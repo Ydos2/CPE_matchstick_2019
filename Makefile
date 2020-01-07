@@ -8,6 +8,9 @@
 CC        =    gcc
 
 SRC     =	src/matchstick.c				\
+			src/tools_functions.c			\
+			src/map.c						\
+			src/draw.c						\
 
 OBJ     =	$(SRC:.c=.o) 			\
 
@@ -24,7 +27,7 @@ MAIN_OBJ    =    $(MAIN_SRC:.c=.o)	\
 
 CFLAGS    =    -I./include -Wextra --coverage -g3
 
-TARGET    =		my_ls		\
+TARGET    =		matchstick		\
 
 TEST_SRC     =     tests/criterion.c		\
 
