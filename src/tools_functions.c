@@ -10,7 +10,7 @@
 
 int my_atoi(char *str)
 {
-    int longueur = my_strlen(str);
+    int longueur = my_strlenn(str);
     int result = 0;
 
     for (int i = 0; i < longueur && longueur < 9; ++i)
@@ -30,9 +30,9 @@ int my_putstr(char const *str)
     return (0);
 }
 
-int my_strlen(char const *str)
+int my_strlenn(char const *str)
 {
-    char i = 0;
+    int i = 0;
 
     for (; str[i] != '\0'; i++);
     return (i);

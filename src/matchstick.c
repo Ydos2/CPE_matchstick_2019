@@ -14,7 +14,6 @@ int matchstick(int argc, char **argv)
     int quit = 0;
     int action = 1;
     int argc_base = argc;
-
     char *line = NULL;
     size_t len = 0;
 
@@ -39,6 +38,7 @@ void initialise_var(map_t *map, char **argv)
     map->y = map->size + 2;
     map->x = map->size + map->size + 1;
     map->map_element = malloc(sizeof(char *) * (map->y + 1));
+    map->tab = malloc(sizeof(char) * (map->y + 1));
     for (int y = 0; y != map->y; y++) {
         map->map_element[y] = malloc(sizeof(char) * (map->x + 1));
         map->map_element[y][map->x] = '\0';
@@ -49,8 +49,26 @@ void initialise_var(map_t *map, char **argv)
 int set_action(map_t *map, int action, char *line)
 {
     if (action == 0)
-        action = set_Line(map, line, action);
+        action = set_Line(map, line);
     else if (action == 1)
-        action = set_Matches(map, line, action);
+        action = set_Matches(map, line);
     return (action);
+}
+
+void initialise_change_player(map_t *map)
+{
+    int actu_nbr = 0;
+    int j = map->tab[map->line_select];
+    int z = 0;
+    int a = 0;
+
+    for (z = 0; map->map_element[map->line_select][z] != '|'; z++);
+    actu_nbr = map->tab[map->line_select] - map->matches_select;
+    if (actu_nbr >= 0) {
+        for (int i = actu_nbr; i != j; i++) {
+            for (a = z; map->map_element[map->line_select][a] != ' '; a++);
+            map->map_element[map->line_select][a-1] = ' ';
+            map->tab[map->line_select]--;
+        }
+    }
 }

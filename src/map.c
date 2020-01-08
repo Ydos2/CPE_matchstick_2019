@@ -27,8 +27,9 @@ void set_map(map_t *map, int x, int y)
 {
     if (y == 0 || y == map->y-1 || x == 0 || x == map->x-1)
         map->map_element[y][x] = '*';
-    else if (x >= map->stick_min && x <= map->stick_max)
+    else if (x >= map->stick_min && x <= map->stick_max) {
         map->map_element[y][x] = '|';
-    else
+        map->tab[y] += 1;
+    } else
         map->map_element[y][x] = ' ';
 }

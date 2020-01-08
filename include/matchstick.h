@@ -11,6 +11,7 @@
 
 typedef struct map
 {
+    int *tab;
     int size;
     int max_get_stick;
     int x;
@@ -25,16 +26,17 @@ typedef struct map
 int matchstick(int argc, char **argv);
 void initialise_var(map_t *map, char **argv);
 int set_action(map_t *map, int action, char *line);
+void initialise_change_player(map_t *map);
 
 void initialise_map(map_t *map);
 void set_map(map_t *map, int x, int y);
 
 void print_updated_board_game(map_t *map);
-int set_Line(map_t *map, char *line, int action);
-int set_Matches(map_t *map, char *line, int action);
+int set_Line(map_t *map, char *line);
+int set_Matches(map_t *map, char *line);
 
 int my_atoi(char *str);
 int my_putstr(char const *str);
-int my_strlen(char const *str);
+int my_strlenn(char const *str);
 
 #endif /* !LS_H_ */
