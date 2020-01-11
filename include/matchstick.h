@@ -25,15 +25,15 @@ typedef struct map
 
 int matchstick(int argc, char **argv);
 void initialise_var(map_t *map, char **argv);
-int set_action(map_t *map, int action, char *line);
 void initialise_change_player(map_t *map);
+void set_change_player(map_t *map, int z);
 
 void initialise_map(map_t *map);
 void set_map(map_t *map, int x, int y);
 
 void print_updated_board_game(map_t *map);
-int set_Line(map_t *map, char *line);
-int set_Matches(map_t *map, char *line);
+void set_Line(map_t *map, char *line, size_t len, int error);
+void set_Matches(map_t *map, char *line, size_t len, int error);
 
 int my_atoi(char *str);
 int my_putstr(char const *str);

@@ -12,7 +12,6 @@ int matchstick(int argc, char **argv)
 {
     map_t *map = NULL;
     int quit = 0;
-    int action = 1;
     int argc_base = argc;
     char *line = NULL;
     size_t len = 0;
@@ -20,11 +19,9 @@ int matchstick(int argc, char **argv)
     map = malloc(sizeof(map_t));
     initialise_var(map, argv);
     initialise_map(map);
-    print_updated_board_game(map);
-    write(1, "Your turn:\nLine: ", 17);
     while (quit == 0) {
-        getline(&line, &len, stdin);
-        action = set_action(map, action, line);
+        set_Line(map, line, len, 0);
+        set_Matches(map, line, len, 0);
     }
     return (0);
 }
@@ -46,29 +43,29 @@ void initialise_var(map_t *map, char **argv)
     map->map_element[map->y+1] = NULL;
 }
 
-int set_action(map_t *map, int action, char *line)
-{
-    if (action == 0)
-        action = set_Line(map, line);
-    else if (action == 1)
-        action = set_Matches(map, line);
-    return (action);
-}
-
 void initialise_change_player(map_t *map)
 {
     int actu_nbr = 0;
     int j = map->tab[map->line_select];
     int z = 0;
-    int a = 0;
 
     for (z = 0; map->map_element[map->line_select][z] != '|'; z++);
     actu_nbr = map->tab[map->line_select] - map->matches_select;
     if (actu_nbr >= 0) {
         for (int i = actu_nbr; i != j; i++) {
-            for (a = z; map->map_element[map->line_select][a] != ' '; a++);
-            map->map_element[map->line_select][a-1] = ' ';
-            map->tab[map->line_select]--;
+            set_change_player(map, z);
         }
     }
+}
+
+void set_change_player(map_t *map, int z)
+{
+    int a = 0;
+
+    for (a = z; map->map_element[map->line_select][a] != ' '; a++) {
+        if (map->map_element[map->line_select][a] == '*')
+            break;
+    }
+    map->map_element[map->line_select][a-1] = ' ';
+    map->tab[map->line_select]--;
 }
