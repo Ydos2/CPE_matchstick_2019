@@ -21,9 +21,10 @@ typedef struct map
     char **map_element;
     int line_select;
     int matches_select;
+    int quit_val;
 } map_t;
 
-int matchstick(int argc, char **argv);
+int matchstick(int argc, char **argv, map_t *map);
 void initialise_var(map_t *map, char **argv);
 void initialise_change_player(map_t *map);
 void set_change_player(map_t *map, int z);

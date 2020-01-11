@@ -8,32 +8,34 @@
 #include "my.h"
 #include "matchstick.h"
 
-int matchstick(int argc, char **argv)
+int matchstick(int argc, char **argv, map_t *map)
 {
-    map_t *map = NULL;
     int quit = 0;
     char *line = NULL;
     size_t len = 0;
     int set_error = 0;
 
-    map = initialise_start(map, argv);
     while (quit == 0) {
         set_error = set_Line(map, line, len, 0);
         if (set_error == 0)
             set_error = set_Matches(map, line, len, 0);
         quit = set_lose(map);
-        if (quit == 1)
-            return (1);
+        if (quit == 1) {
+            map->quit_val = 1;
+            return (0);
+        }
         if (set_error == 0)
             initialise_AI(map);
         quit = set_win(map);
     }
-    return (2);
+    map->quit_val = 2;
+    return (0);
 }
 
 map_t *initialise_start(map_t *map, char **argv)
 {
     map = malloc(sizeof(map_t));
+    map->quit_val = 0;
     initialise_var(map, argv);
     initialise_map(map);
     return (map);
