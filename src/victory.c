@@ -16,6 +16,7 @@ int set_win(map_t *map)
         if (map->tab[i] != 0)
             j = 1;
     if (j == 0) {
+        print_updated_board_game(map);
         write(1, "You lost, too bad...\n", 22);
         return (2);
     } else
@@ -30,6 +31,7 @@ int set_lose(map_t *map)
         if (map->tab[i] != 0)
             j = 1;
     if (j == 0) {
+        print_updated_board_game(map);
         write(1, "I lost... snif... but I'll get you next time!!\n", 47);
         return (1);
     } else

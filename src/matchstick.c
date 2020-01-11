@@ -12,23 +12,31 @@ int matchstick(int argc, char **argv)
 {
     map_t *map = NULL;
     int quit = 0;
-    int argc_base = argc;
     char *line = NULL;
     size_t len = 0;
+    int set_error = 0;
 
+    map = initialise_start(map, argv);
+    while (quit == 0) {
+        set_error = set_Line(map, line, len, 0);
+        if (set_error == 0)
+            set_error = set_Matches(map, line, len, 0);
+        quit = set_lose(map);
+        if (quit == 1)
+            return (1);
+        if (set_error == 0)
+            initialise_AI(map);
+        quit = set_win(map);
+    }
+    return (2);
+}
+
+map_t *initialise_start(map_t *map, char **argv)
+{
     map = malloc(sizeof(map_t));
     initialise_var(map, argv);
     initialise_map(map);
-    while (quit == 0) {
-        set_Line(map, line, len, 0);
-        set_Matches(map, line, len, 0);
-        quit = set_win(map);
-        if (quit == 2)
-            return (2);
-        initialise_AI(map);
-        quit = set_lose(map);
-    }
-    return (1);
+    return (map);
 }
 
 void initialise_var(map_t *map, char **argv)
