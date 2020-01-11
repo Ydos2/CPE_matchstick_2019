@@ -22,8 +22,13 @@ int matchstick(int argc, char **argv)
     while (quit == 0) {
         set_Line(map, line, len, 0);
         set_Matches(map, line, len, 0);
+        quit = set_win(map);
+        if (quit == 2)
+            return (2);
+        initialise_AI(map);
+        quit = set_lose(map);
     }
-    return (0);
+    return (1);
 }
 
 void initialise_var(map_t *map, char **argv)
@@ -51,21 +56,18 @@ void initialise_change_player(map_t *map)
 
     for (z = 0; map->map_element[map->line_select][z] != '|'; z++);
     actu_nbr = map->tab[map->line_select] - map->matches_select;
-    if (actu_nbr >= 0) {
-        for (int i = actu_nbr; i != j; i++) {
+    if (actu_nbr >= 0)
+        for (int i = actu_nbr; i != j; i++)
             set_change_player(map, z);
-        }
-    }
 }
 
 void set_change_player(map_t *map, int z)
 {
     int a = 0;
 
-    for (a = z; map->map_element[map->line_select][a] != ' '; a++) {
+    for (a = z; map->map_element[map->line_select][a] != ' '; a++)
         if (map->map_element[map->line_select][a] == '*')
             break;
-    }
     map->map_element[map->line_select][a-1] = ' ';
     map->tab[map->line_select]--;
 }

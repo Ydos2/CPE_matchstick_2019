@@ -34,9 +34,16 @@ void set_map(map_t *map, int x, int y);
 void print_updated_board_game(map_t *map);
 void set_Line(map_t *map, char *line, size_t len, int error);
 void set_Matches(map_t *map, char *line, size_t len, int error);
+void initialise_AI(map_t *map);
+void set_AI(map_t *map);
 
 int my_atoi(char *str);
 int my_putstr(char const *str);
 int my_strlenn(char const *str);
+void my_put_nbrr(int nbr);
+void my_putcharr(char c);
+
+int set_win(map_t *map);
+int set_lose(map_t *map);
 
 #endif /* !LS_H_ */

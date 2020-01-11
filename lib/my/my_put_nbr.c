@@ -6,7 +6,6 @@
 */
 
 #include "my.h"
-#include "ls.h"
 
 int my_put_nbr_pos(int nbr)
 {

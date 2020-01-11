@@ -11,6 +11,7 @@ SRC     =	src/matchstick.c				\
 			src/tools_functions.c			\
 			src/map.c						\
 			src/draw.c						\
+			src/victory.c					\
 
 OBJ     =	$(SRC:.c=.o) 			\
 

@@ -37,3 +37,18 @@ int my_strlenn(char const *str)
     for (; str[i] != '\0'; i++);
     return (i);
 }
+
+void my_put_nbrr(int nbr)
+{
+    long int div = 1;
+
+    while ((nbr / div ) != 0)
+        div = div*10;
+    for (; div != 1; div = div / 10)
+        my_putcharr(((nbr%div)/(div/10)) + '0');
+}
+
+void my_putcharr(char c)
+{
+    write(1, &c, 1);
+}
