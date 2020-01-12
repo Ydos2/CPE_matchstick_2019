@@ -12,7 +12,7 @@ int main (int argc, char **argv)
 {
     map_t *map = NULL;
 
-    if (argc > 3)
+    if (argc != 3)
         return (84);
     map = initialise_start(map, argv);
     if (matchstick(argc, argv, map) == 84)

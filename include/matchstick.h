@@ -34,7 +34,7 @@ void initialise_map(map_t *map);
 void set_map(map_t *map, int x, int y);
 
 void print_updated_board_game(map_t *map);
-int set_Line(map_t *map, char *line, size_t len, int error);
+void set_Line(map_t *map, char *line, size_t len, int error);
 int set_Matches(map_t *map, char *line, size_t len, int error);
 void initialise_AI(map_t *map);
 void set_AI(map_t *map);

@@ -10,15 +10,13 @@
 
 int matchstick(int argc, char **argv, map_t *map)
 {
-    int quit = 0;
     char *line = NULL;
     size_t len = 0;
     int set_error = 0;
 
-    while (quit == 0) {
-        set_error = set_Line(map, line, len, 0);
-        if (set_error == 0)
-            set_error = set_Matches(map, line, len, 0);
+    for (int quit = 0; quit == 0;) {
+        set_Line(map, line, len, 0);
+        set_error = set_Matches(map, line, len, 0);
         quit = set_lose(map);
         if (quit == 1) {
             map->quit_val = 1;
