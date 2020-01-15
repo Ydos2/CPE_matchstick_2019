@@ -12,6 +12,7 @@ SRC     =	src/matchstick.c				\
 			src/map.c						\
 			src/draw.c						\
 			src/victory.c					\
+			src/error.c						\
 
 OBJ     =	$(SRC:.c=.o) 			\
 

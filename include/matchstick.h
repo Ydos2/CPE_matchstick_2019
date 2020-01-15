@@ -22,6 +22,7 @@ typedef struct map
     int line_select;
     int matches_select;
     int quit_val;
+    int error_matches;
 } map_t;
 
 int matchstick(int argc, char **argv, map_t *map);
@@ -34,8 +35,8 @@ void initialise_map(map_t *map);
 void set_map(map_t *map, int x, int y);
 
 void print_updated_board_game(map_t *map);
-void set_Line(map_t *map, char *line, size_t len, int error);
-int set_Matches(map_t *map, char *line, size_t len, int error);
+int set_Line(map_t *map, char *line, size_t len, int error);
+int set_Matches(map_t *map, char *line, size_t len);
 void initialise_AI(map_t *map);
 void set_AI(map_t *map);
 
@@ -47,5 +48,8 @@ void my_putcharr(char c);
 
 int set_win(map_t *map);
 int set_lose(map_t *map);
+
+int get_Matches_error(map_t *map, char *line, size_t len);
+int get_number_matches(map_t *map, char *line);
 
 #endif /* !LS_H_ */

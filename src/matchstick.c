@@ -14,9 +14,12 @@ int matchstick(int argc, char **argv, map_t *map)
     size_t len = 0;
     int set_error = 0;
 
-    for (int quit = 0; quit == 0;) {
-        set_Line(map, line, len, 0);
-        set_error = set_Matches(map, line, len, 0);
+    for (int quit = 0; quit == 0; map->quit_val = 2) {
+        if (set_Line(map, line, len, 0) == -1)
+            return (0);
+        set_error = set_Matches(map, line, len);
+        if (set_error == -1)
+            return (0);
         quit = set_lose(map);
         if (quit == 1) {
             map->quit_val = 1;
@@ -26,7 +29,6 @@ int matchstick(int argc, char **argv, map_t *map)
             initialise_AI(map);
         quit = set_win(map);
     }
-    map->quit_val = 2;
     return (0);
 }
 
@@ -34,6 +36,7 @@ map_t *initialise_start(map_t *map, char **argv)
 {
     map = malloc(sizeof(map_t));
     map->quit_val = 0;
+    map->error_matches = 0;
     initialise_var(map, argv);
     initialise_map(map);
     return (map);

@@ -16,36 +16,40 @@ void print_updated_board_game(map_t *map)
     }
 }
 
-void set_Line(map_t *map, char *line, size_t len, int error)
+int set_Line(map_t *map, char *line, size_t len, int error)
 {
+    int ret = 0;
     if (error == 0) {
-        print_updated_board_game(map);
+        if (map->error_matches == 0)
+            print_updated_board_game(map);
         write(1, "\nYour turn:\nLine: ", 18);
+        map->error_matches = 0;
     } else {
         write(1, "Error: this line is out of range\n", 33);
-        exit (0);
+        write(1, "Line: ", 6);
     }
-    getline(&line, &len, stdin);
+    ret = getline(&line, &len, stdin);
+    if (ret == -1)
+        return (-1);
     map->line_select = my_atoi(line);
     if (map->y-1 <= map->line_select || map->line_select <= 0)
         set_Line(map, line, len, 1);
+    return (0);
 }
 
-int set_Matches(map_t *map, char *line, size_t len, int error)
+int set_Matches(map_t *map, char *line, size_t len)
 {
-    if (error == 0)
-        write(1, "Matches: ", 9);
-    else {
+    write(1, "Matches: ", 9);
+    if (getline(&line, &len, stdin) == -1)
+        return (-1);
+    if (get_number_matches(map, line) == 1)
+        return (1);
+    if (map->max_get_stick < map->matches_select) {
         write(1, "Error: you cannot remove more than ", 36);
         my_put_nbrr(map->matches_select);
         write(1, " matches per turn\n", 18);
-        getline(&line, &len, stdin);
         return (1);
     }
-    getline(&line, &len, stdin);
-    map->matches_select = my_atoi(line);
-    if (map->max_get_stick < map->matches_select)
-        set_Matches(map, line, len, 1);
     initialise_change_player(map);
     write(1, "Player removed ", 15);
     my_put_nbrr(map->matches_select);
