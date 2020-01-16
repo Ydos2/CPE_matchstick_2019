@@ -25,31 +25,39 @@ typedef struct map
     int error_matches;
 } map_t;
 
+// matchstick.c
 int matchstick(int argc, char **argv, map_t *map);
 void initialise_var(map_t *map, char **argv);
 void initialise_change_player(map_t *map);
 void set_change_player(map_t *map, int z);
 map_t *initialise_start(map_t *map, char **argv);
 
+// map.c
 void initialise_map(map_t *map);
 void set_map(map_t *map, int x, int y);
 
+// draw.c
 void print_updated_board_game(map_t *map);
 int set_Line(map_t *map, char *line, size_t len, int error);
 int set_Matches(map_t *map, char *line, size_t len);
 void initialise_AI(map_t *map);
 void set_AI(map_t *map);
 
+// tools_function.c
 int my_atoi(char *str);
 int my_putstr(char const *str);
 int my_strlenn(char const *str);
 void my_put_nbrr(int nbr);
 void my_putcharr(char c);
 
+// victory.c
 int set_win(map_t *map);
 int set_lose(map_t *map);
 
-int get_Matches_error(map_t *map, char *line, size_t len);
+// error.c
 int get_number_matches(map_t *map, char *line);
+
+// update_game.c
+int set_update(int quit, int set_error, map_t *map);
 
 #endif /* !LS_H_ */

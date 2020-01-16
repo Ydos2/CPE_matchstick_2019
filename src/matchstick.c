@@ -15,19 +15,16 @@ int matchstick(int argc, char **argv, map_t *map)
     int set_error = 0;
 
     for (int quit = 0; quit == 0; map->quit_val = 1) {
-        if (set_Line(map, line, len, 0) == -1)
-            return (0);
-        set_error = set_Matches(map, line, len);
-        if (set_error == -1)
-            return (0);
-        quit = set_win(map);
-        if (quit == 2) {
-            map->quit_val = 2;
+        if (set_Line(map, line, len, set_error) == -1) {
+            map->quit_val = 0;
             return (0);
         }
-        if (set_error == 0)
-            initialise_AI(map);
-        quit = set_lose(map);
+        set_error = set_Matches(map, line, len);
+        if (set_error == -1) {
+            map->quit_val = 0;
+            return (0);
+        }
+        set_update(quit, set_error, map);
     }
     return (0);
 }

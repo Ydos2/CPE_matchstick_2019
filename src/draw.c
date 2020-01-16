@@ -24,16 +24,17 @@ int set_Line(map_t *map, char *line, size_t len, int error)
             print_updated_board_game(map);
         write(1, "\nYour turn:\nLine: ", 18);
         map->error_matches = 0;
-    } else {
-        write(1, "Error: this line is out of range\n", 33);
+    } else if (error == 2) {
+        write(1, "Error, this line is out of range\n", 33);
         write(1, "Line: ", 6);
-    }
+    } else
+        write(1, "Line: ", 6);
     ret = getline(&line, &len, stdin);
     if (ret == -1)
         return (-1);
     map->line_select = my_atoi(line);
     if (map->y-1 <= map->line_select || map->line_select <= 0)
-        set_Line(map, line, len, 1);
+        set_Line(map, line, len, 2);
     return (0);
 }
 
@@ -46,7 +47,7 @@ int set_Matches(map_t *map, char *line, size_t len)
         return (1);
     if (map->max_get_stick < map->matches_select) {
         write(1, "Error: you cannot remove more than ", 36);
-        my_put_nbrr(map->matches_select);
+        my_put_nbrr(map->max_get_stick);
         write(1, " matches per turn\n", 18);
         return (1);
     }
