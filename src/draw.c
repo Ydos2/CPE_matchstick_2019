@@ -31,10 +31,10 @@ int set_Line(map_t *map, char *line, size_t len, int error)
     } else
         write(1, "Line: ", 6);
     ret = getline(&line, &len, stdin);
-    if (get_number_matches(map, line) == 1)
-        set_Line(map, line, len, 1);
     if (ret == -1)
         return (-1);
+    if (get_number_matches(map, line) == 1)
+        set_Line(map, line, len, 1);
     map->line_select = my_atoi(line);
     if (map->y-1 <= map->line_select || map->line_select <= 0)
         set_Line(map, line, len, 2);
