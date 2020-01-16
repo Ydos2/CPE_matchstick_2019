@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2020
-** ls
+** matchstick
 ** File description:
-** ls
+** matchstick
 */
 
 #ifndef LS_H_
