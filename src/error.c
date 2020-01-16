@@ -10,9 +10,15 @@
 
 int get_number_matches(map_t *map, char *line)
 {
-    map->matches_select = my_atoi(line);
-    if (map->matches_select < 0) {
-        write(1, "Error: invalid input (positive number expected)", 47);
+    int nbr_alpha = 0;
+
+    for (int i = 0; line[i+1] != '\0'; i++)
+        if (line[i] < 48 || line[i] > 57) {
+            nbr_alpha = 1;
+            break;
+        }
+    if (nbr_alpha == 1 || line[0] == '-') {
+        write(1, "Error: invalid input (positive number expected)\n", 48);
         return (1);
     }
     return (0);

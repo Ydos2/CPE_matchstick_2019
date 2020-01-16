@@ -59,5 +59,6 @@ int get_number_matches(map_t *map, char *line);
 
 // update_game.c
 int set_update(int quit, int set_error, map_t *map);
+void set_update_matches(map_t *map);
 
 #endif /* !LS_H_ */

@@ -24,7 +24,7 @@ int matchstick(int argc, char **argv, map_t *map)
             map->quit_val = 0;
             return (0);
         }
-        set_update(quit, set_error, map);
+        quit = set_update(quit, set_error, map);
     }
     return (0);
 }
