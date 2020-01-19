@@ -32,4 +32,6 @@ void set_map(map_t *map, int x, int y)
         map->tab[y] += 1;
     } else
         map->map_element[y][x] = ' ';
+    for (int xx = 0; map->map_element[0][xx] != '\0'; xx++)
+        map->map_element[0][xx] = '*';
 }
