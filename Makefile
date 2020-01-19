@@ -42,11 +42,6 @@ LDFLAGS     =     -lcriterion -lgcov --coverage
 
 all: $(TARGET)
 
-build_lib:
-	cd lib/my/ && make
-	cp lib/my/libmy.a lib/
-	cp lib/my/my.h include/
-
 $(TARGET): $(OBJ) $(MAIN_OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(MAIN_OBJ) -o $(TARGET)
 
