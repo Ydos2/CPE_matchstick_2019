@@ -8,7 +8,7 @@
 #include "my.h"
 #include "matchstick.h"
 
-int matchstick(int argc, char **argv, map_t *map)
+int my_matchstick(int argc, char **argv, map_t *map)
 {
     char *line = NULL;
     size_t len = 0;

@@ -26,7 +26,7 @@ typedef struct map
 } map_t;
 
 // matchstick.c
-int matchstick(int argc, char **argv, map_t *map);
+int my_matchstick(int argc, char **argv, map_t *map);
 void initialise_var(map_t *map, char **argv);
 void initialise_change_player(map_t *map);
 void set_change_player(map_t *map, int z);
