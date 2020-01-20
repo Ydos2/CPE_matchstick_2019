@@ -46,6 +46,10 @@ int set_Matches(map_t *map, char *line, size_t len)
     write(1, "Matches: ", 9);
     if (getline(&line, &len, stdin) == -1)
         return (-1);
+    if (line[0] == '\n') {
+        write(1, "Error: you have to remove at least one match\n", 45);
+        return (1);
+    }
     if (get_number_matches(map, line) == 1)
         return (1);
     map->matches_select = my_atoi(line);
