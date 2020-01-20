@@ -14,6 +14,7 @@ SRC     =	src/matchstick.c				\
 			src/victory.c					\
 			src/error.c						\
 			src/update_game.c				\
+			src/ai.c						\
 
 OBJ     =	$(SRC:.c=.o) 			\
 

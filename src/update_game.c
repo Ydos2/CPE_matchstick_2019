@@ -13,7 +13,7 @@ int set_update(int quit, int set_error, map_t *map)
     quit = set_win(map);
     if (quit == 2) {
         map->quit_val = 2;
-        return (0);
+        return (2);
     }
     if (set_error == 0)
         initialise_AI(map);

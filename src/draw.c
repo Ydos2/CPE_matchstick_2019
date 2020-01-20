@@ -66,26 +66,3 @@ int set_Matches(map_t *map, char *line, size_t len)
         set_update_matches(map);
     return (0);
 }
-
-void initialise_AI(map_t *map)
-{
-    map->line_select = 1;
-    map->matches_select = 1;
-    for (int i = 1; i != map->y; i++)
-        if (map->tab[i] != 0)
-            map->line_select = i++;
-    set_AI(map);
-}
-
-void set_AI(map_t *map)
-{
-    print_updated_board_game(map);
-    write(1, "\n", 1);
-    initialise_change_player(map);
-    write(1, "AI's turn...\n", 13);
-    write(1, "AI removed ", 11);
-    my_put_nbrr(map->matches_select);
-    write(1, " match(es) from line ", 21);
-    my_put_nbrr(map->line_select);
-    write(1, "\n", 1);
-}

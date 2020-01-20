@@ -23,6 +23,8 @@ int my_matchstick(int argc, char **argv, map_t *map)
             return (0);
         }
         quit = set_update(quit, set_error, map);
+        if (quit == 2)
+            return (0);
     }
     return (0);
 }

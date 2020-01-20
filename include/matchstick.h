@@ -40,8 +40,6 @@ void set_map(map_t *map, int x, int y);
 void print_updated_board_game(map_t *map);
 int set_Line(map_t *map, char *line, size_t len, int error);
 int set_Matches(map_t *map, char *line, size_t len);
-void initialise_AI(map_t *map);
-void set_AI(map_t *map);
 
 // tools_function.c
 int my_atoi(char *str);
@@ -60,5 +58,10 @@ int get_number_matches(map_t *map, char *line);
 // update_game.c
 int set_update(int quit, int set_error, map_t *map);
 void set_update_matches(map_t *map);
+
+// ai.c
+void initialise_AI(map_t *map);
+void set_AI(map_t *map);
+int rand_a_b(int a, int b);
 
 #endif /* !LS_H_ */
