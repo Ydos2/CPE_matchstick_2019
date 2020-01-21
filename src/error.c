@@ -17,6 +17,7 @@ int get_number_matches(map_t *map, char *line)
             break;
         }
     if (nbr_alpha == 1 || line[0] == '-' || line[0] == '0') {
+        write(1, "invalid input (positive number expected)\n", 41);
         return (1);
     }
     return (0);
