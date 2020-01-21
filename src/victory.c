@@ -37,3 +37,16 @@ int set_lose(map_t *map)
     } else
         return (0);
 }
+
+void set_end(map_t *map)
+{
+    my_free_array(map->map_element);
+    free(map->tab);
+}
+
+void my_free_array(char **array)
+{
+    for (int i = 0; array[i] != NULL; i++)
+        free(array[i]);
+    free(array);
+}

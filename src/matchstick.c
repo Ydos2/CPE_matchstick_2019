@@ -34,6 +34,9 @@ map_t *initialise_start(map_t *map, char **argv)
     map = malloc(sizeof(map_t));
     map->quit_val = 0;
     map->error_matches = 0;
+    map->tab = NULL;
+    map->stick_max = 0;
+    map->stick_min = 0;
     initialise_var(map, argv);
     initialise_map(map);
     return (map);
@@ -48,12 +51,14 @@ void initialise_var(map_t *map, char **argv)
     map->y = map->size + 2;
     map->x = map->size + map->size + 1;
     map->map_element = malloc(sizeof(char *) * (map->y + 1));
-    map->tab = malloc(sizeof(char) * (map->y + 1));
+    map->tab = malloc(sizeof(int) * (map->y + 1));
+    for (int i = 0; i != map->y; i++)
+        map->tab[i] = 0;
     for (int y = 0; y != map->y; y++) {
         map->map_element[y] = malloc(sizeof(char) * (map->x + 1));
         map->map_element[y][map->x] = '\0';
     }
-    map->map_element[map->y+1] = NULL;
+    map->map_element[map->y] = NULL;
 }
 
 void initialise_change_player(map_t *map)

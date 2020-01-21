@@ -51,9 +51,12 @@ void my_putcharr(char c);
 // victory.c
 int set_win(map_t *map);
 int set_lose(map_t *map);
+void set_end(map_t *map);
+void my_free_array(char **array);
 
 // error.c
 int get_number_matches(map_t *map, char *line);
+int get_first_error(char *line);
 
 // update_game.c
 int set_update(int quit, int set_error, map_t *map);

@@ -17,8 +17,22 @@ int get_number_matches(map_t *map, char *line)
             nbr_alpha = 1;
             break;
         }
-    if (nbr_alpha == 1 || line[0] == '-') {
-        write(1, "Error: invalid input (positive number expected)\n", 48);
+    if (nbr_alpha == 1 || line[0] == '-' || line[0] == '0') {
+        return (1);
+    }
+    return (0);
+}
+
+int get_first_error(char *line)
+{
+    int nbr_alpha = 0;
+
+    for (int i = 0; line[i] != '\0'; i++)
+        if (line[i] < 48 || line[i] > 57) {
+            nbr_alpha = 1;
+            break;
+        }
+    if (nbr_alpha == 1 || line[0] == '-' || line[0] == '0') {
         return (1);
     }
     return (0);
