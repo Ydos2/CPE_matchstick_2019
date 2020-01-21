@@ -5,7 +5,6 @@
 ** tools_functions
 */
 
-#include "my.h"
 #include "matchstick.h"
 
 int my_atoi(char *str)

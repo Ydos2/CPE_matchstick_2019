@@ -5,7 +5,6 @@
 ** map
 */
 
-#include "my.h"
 #include "matchstick.h"
 
 void initialise_map(map_t *map)

@@ -7,7 +7,14 @@
 
 #ifndef LS_H_
 #define LS_H_
+#include <unistd.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <stddef.h>
+#include <stdarg.h>
+#include <string.h>
+#include <errno.h>
+#include <time.h>
 
 typedef struct map
 {
@@ -63,8 +70,9 @@ int set_update(int quit, int set_error, map_t *map);
 void set_update_matches(map_t *map);
 
 // ai.c
-void initialise_AI(map_t *map);
-void set_AI(map_t *map);
 int rand_a_b(int a, int b);
+void initialise_AI(map_t *map);
+void set_ai_order(map_t *map);
+void set_AI(map_t *map);
 
 #endif /* !LS_H_ */

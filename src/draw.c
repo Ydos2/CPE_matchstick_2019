@@ -5,7 +5,6 @@
 ** draw
 */
 
-#include "my.h"
 #include "matchstick.h"
 
 void print_updated_board_game(map_t *map)

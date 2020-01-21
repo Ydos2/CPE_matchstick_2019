@@ -5,7 +5,6 @@
 ** update_game
 */
 
-#include "my.h"
 #include "matchstick.h"
 
 int set_update(int quit, int set_error, map_t *map)

@@ -5,7 +5,6 @@
 ** error
 */
 
-#include "my.h"
 #include "matchstick.h"
 
 int get_number_matches(map_t *map, char *line)

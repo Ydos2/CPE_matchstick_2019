@@ -5,7 +5,6 @@
 ** victory
 */
 
-#include "my.h"
 #include "matchstick.h"
 
 int set_win(map_t *map)

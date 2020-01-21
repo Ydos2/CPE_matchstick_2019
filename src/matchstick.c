@@ -5,7 +5,6 @@
 ** matchstick
 */
 
-#include "my.h"
 #include "matchstick.h"
 
 int my_matchstick(int argc, char **argv, map_t *map)
