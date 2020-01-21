@@ -15,10 +15,24 @@ void print_updated_board_game(map_t *map)
     }
 }
 
-int set_Line(map_t *map, char *line, size_t len, int error)
+int set_line(map_t *map, char *line, size_t len, int error)
 {
     int ret = 0;
 
+    get_line(map, error);
+    ret = getline(&line, &len, stdin);
+    if (ret == -1)
+        return (-1);
+    if (get_number_matches(map, line) == 1)
+        set_line(map, line, len, 1);
+    map->line_select = my_atoi(line);
+    if (map->y-1 <= map->line_select || map->line_select <= 0)
+        set_line(map, line, len, 2);
+    return (0);
+}
+
+void get_line(map_t *map, int error)
+{
     if (error == 0) {
         if (map->error_matches == 0)
             print_updated_board_game(map);
@@ -29,27 +43,14 @@ int set_Line(map_t *map, char *line, size_t len, int error)
         write(1, "Line: ", 6);
     } else
         write(1, "Line: ", 6);
-    ret = getline(&line, &len, stdin);
-    if (ret == -1)
-        return (-1);
-    if (get_number_matches(map, line) == 1)
-        set_Line(map, line, len, 1);
-    map->line_select = my_atoi(line);
-    if (map->y-1 <= map->line_select || map->line_select <= 0)
-        set_Line(map, line, len, 2);
-    return (0);
 }
 
-int set_Matches(map_t *map, char *line, size_t len)
+int set_matches(map_t *map, char *line, size_t len)
 {
     write(1, "Matches: ", 9);
     if (getline(&line, &len, stdin) == -1)
         return (-1);
-    if (line[0] == '\n') {
-        write(1, "Error: you have to remove at least one match\n", 45);
-        return (1);
-    }
-    if (get_number_matches(map, line) == 1)
+    if (draw_matches(map, line) == 1)
         return (1);
     map->matches_select = my_atoi(line);
     if (map->max_get_stick < map->matches_select) {
@@ -64,4 +65,14 @@ int set_Matches(map_t *map, char *line, size_t len)
     } else
         set_update_matches(map);
     return (0);
+}
+
+int draw_matches(map_t *map, char *line)
+{
+    if (line[0] == '\n') {
+        write(1, "Error: you have to remove at least one match\n", 45);
+        return (1);
+    }
+    if (get_number_matches(map, line) == 1)
+        return (1);
 }

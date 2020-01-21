@@ -7,7 +7,7 @@
 
 #include "matchstick.h"
 
-int rand_a_b(int a, int b)
+int set_rand_a_b(int a, int b)
 {
     return rand()%(b-a) +a;
 }
@@ -18,7 +18,7 @@ void initialise_AI(map_t *map)
 
     srand(time(NULL));
     while (1) {
-        nbr_al_line = rand_a_b(0, map->max_get_stick+1);
+        nbr_al_line = set_rand_a_b(0, map->max_get_stick+1);
         if (map->tab[nbr_al_line] != 0)
             break;
     }

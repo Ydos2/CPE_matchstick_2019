@@ -14,9 +14,9 @@ int my_matchstick(int argc, char **argv, map_t *map)
     int set_error = 0;
 
     for (int quit = 0; quit == 0; map->quit_val = 1) {
-        set_error = set_Line(map, line, len, set_error);
+        set_error = set_line(map, line, len, set_error);
         if (set_error != -1)
-            set_error = set_Matches(map, line, len);
+            set_error = set_matches(map, line, len);
         if (set_error == -1) {
             map->quit_val = 0;
             return (0);
