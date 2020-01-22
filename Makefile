@@ -29,7 +29,7 @@ MAIN_SRC    =    src/main.c			\
 
 MAIN_OBJ    =    $(MAIN_SRC:.c=.o)	\
 
-CFLAGS    =    -I./include -Wextra --coverage -g3
+CFLAGS    =    -I./include -Wextra -g3
 
 TARGET    =		matchstick		\
 
@@ -39,7 +39,7 @@ TEST_OBJ     =     $(TEST_SRC:.c=.o)
 
 TEST_TARGET     =     unit_tests
 
-LDFLAGS     =     -lcriterion -lgcov --coverage
+LDFLAGS     =     -lcriterion -lgcov
 
 all: $(TARGET) ## Build the project
 
@@ -47,20 +47,20 @@ $(TARGET): build
 
 build: $(OBJ) $(MAIN_OBJ) ## Compile the project
 	@printf "\e[1;3;5;32m▀▄▀▄▀▄ Finished compiling sources ▄▀▄▀▄▀\e[0m\n"
-	$(CC) $(CFLAGS) $(OBJ) $(MAIN_OBJ) -o $(TARGET)
+	@$(CC) $(CFLAGS) $(OBJ) $(MAIN_OBJ) -o $(TARGET)
 	@printf "[\e[1;34m-Link Obj-\e[0m] % 43s\n" $(OBJ) | tr ' ' '.'
 	@printf "[\e[1;34m-Link Main-\e[0m] % 43s\n" $(MAIN_OBJ) | tr ' ' '.'
 	@printf "\e[1;3;5;32m▀▄▀▄▀▄ Link all object ▄▀▄▀▄▀\e[0m\n"
 
 %.o : %.c
-	$(CC) $(LDFLAGS) $(CFLAGS) -c $< -o $@
+	@$(CC) $(LDFLAGS) $(CFLAGS) -c $< -o $@
 	@printf "[\e[1;34m-Compiled-\e[0m] % 41s\n" $@ | tr ' ' '.'
 
 clean: ## Clean the useless file
-	rm -f $(OBJ) $(MAIN_OBJ) $(TEST_OBJ) $(COVERAGE)
+	@rm -f $(OBJ) $(MAIN_OBJ) $(TEST_OBJ) $(COVERAGE)
 
 fclean: clean ## Clean the project
-	rm -f $(TARGET) $(TEST_TARGET)
+	@rm -f $(TARGET) $(TEST_TARGET)
 	@printf "[\e[1;31m-RM-\e[0m] % 42s\n" $(TARGET) | tr ' ' '.'
 	@printf "[\e[1;31m-RM-\e[0m] % 42s\n" $(TEST_TARGET) | tr ' ' '.'
 	@printf "\e[1;3;5;32m▀▄▀▄▀▄ Finished RM ▄▀▄▀▄▀\e[0m\n"
@@ -68,12 +68,12 @@ fclean: clean ## Clean the project
 re:    fclean all ## Clean then compile
 
 tests_build: $(OBJ) $(TEST_OBJ) ## Build tests
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) $(TEST_OBJ) -o $(TEST_TARGET)
+	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) $(TEST_OBJ) -o $(TEST_TARGET)
 
 tests_run: ## Launch tests
-	$(CC) -o unit_tests $(LDFLAGS) $(SRC) $(TEST_SRC) $(CFLAGS)
-	./$(TEST_TARGET)
-	gcovr --exclude tests/
+	@$(CC) -o unit_tests $(LDFLAGS) $(SRC) $(TEST_SRC) $(CFLAGS)
+	@./$(TEST_TARGET)
+	@gcovr --exclude tests/
 
 re_tests: fclean tests_run ## Clean then tests
 
