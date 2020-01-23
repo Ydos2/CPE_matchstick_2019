@@ -54,7 +54,7 @@ int set_matches(map_t *map, char *line, size_t len)
         return (1);
     map->matches_select = my_atoi(line);
     if (map->max_get_stick < map->matches_select) {
-        write(1, "Error: you cannot remove more than ", 36);
+        write(1, "Error: you cannot remove more than ", 35);
         my_put_nbrr(map->max_get_stick);
         write(1, " matches per turn\n", 18);
         return (1);

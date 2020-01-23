@@ -16,7 +16,7 @@ int set_win(map_t *map)
             j = 1;
     if (j == 0) {
         print_updated_board_game(map);
-        write(1, "You lost, too bad...\n", 22);
+        write(1, "You lost, too bad...\n", 21);
         return (2);
     } else
         return (0);
